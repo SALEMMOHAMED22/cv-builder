@@ -27,8 +27,9 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/app-light.css') }}" id="lightTheme" />
     <link rel="stylesheet" href="{{ asset('backend/css/app-dark.css') }}" id="darkTheme" disabled />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" id="darkTheme"
-        disabled />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    {{-- tagify for input tag --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
 
 </head>
 
@@ -76,6 +77,7 @@
         @endif
     </script>
 
+
     <script src="{{ asset('backend/js/tinycolor-min.js') }}"></script>
     <script src="{{ asset('backend/js/config.js') }}"></script>
     <script src="{{ asset('backend/js/d3.min.js') }}"></script>
@@ -101,6 +103,16 @@
     <script src="{{ asset('backend/js/dropzone.min.js') }}"></script>
     <script src="{{ asset('backend/js/uppy.min.js') }}"></script>
     <script src="{{ asset('backend/js/quill.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    @stack('js')
+    <script>
+        var input = document.querySelector('#skills');
+        new Tagify(input, {
+            enforceWhitelist: false,
+            originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+        });
+    </script>
     <script>
         $(".select2").select2({
             theme: "bootstrap4",
@@ -312,7 +324,7 @@
 
 
 
-  
+
 
 </body>
 
